@@ -1,0 +1,4 @@
+name = EDU Render system
+description = test module for rendering systen
+core = 7.x
+package = EDU

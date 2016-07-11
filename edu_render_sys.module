@@ -1,0 +1,84 @@
+<?php
+use Symfony\Component\DependencyInjection\LazyProxy\PhpDumper\NullDumper;
+
+/**
+ * Implements hook_theme().
+ */
+function edu_render_sys_theme($existing, $type, $theme, $path) {
+  $items = array();
+
+  $items['edu_render_sys_first_block'] = array(
+    'render element' => 'edu_block',
+    'template' => 'templates/block-edu-render-sys-first',
+  );
+
+  $items['edu_render_sys_first_block_message'] = array(
+    'variables' => array('message' => NULL),
+    'template' => 'templates/block-edu-render-sys-first-message',
+  );
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function edu_render_sys_block_info() {
+  $blocks['edu_render_sys_first'] = array(
+    'info' => t('EDU render system 1'),
+  );
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function edu_render_sys_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'edu_render_sys_first':
+      $block['subject'] = 'EDU render system 1';
+
+      $message1 = t('EDU render system block 1 body 1');
+      $message2 = t('EDU render system block 1 body 2');
+
+      $content = array(
+        '#theme' => 'edu_render_sys_first_block',
+
+        'message1' => array(
+          '#message' => $message1,
+          '#theme' => 'edu_render_sys_first_block_message',
+        ),
+        'message2' => array(
+          '#message' => $message2,
+          '#theme' => 'edu_render_sys_first_block_message',
+        ),
+        'message3' => array(
+          '#message' => $message2,
+          '#theme' => 'edu_render_sys_first_block_message',
+        ),
+        'message4' => array(
+          '#message' => $message2,
+          '#theme' => 'edu_render_sys_first_block_message',
+        ),
+        'message5' => array(
+          '#message' => $message2,
+          '#theme' => 'edu_render_sys_first_block_message',
+        ),
+        'message6' => array(
+          '#message' => $message2,
+          '#theme' => 'edu_render_sys_first_block_message',
+        ),
+      );
+
+      $block['content'] = $content;
+
+      break;
+  }
+
+  return $block;
+}
